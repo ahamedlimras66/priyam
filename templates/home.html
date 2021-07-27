@@ -107,8 +107,13 @@
 
                            <div class="checkout__input">
                                <h4>Quatity<span>*</span></h4>
+                               <input type="number" id="quantity" name="quantity" min="1">
                            </div>
 							<br>
+                            <div class="checkout__input">
+                                <h4>price<span>*</span></h4>
+                                <input type="number" id="price" readonly>
+                            </div>
          <center>    <input type="button" class="site-btn" onClick="add()" value="Add"/></center>
                        </div>
                        <div class="col-lg-4 col-md-7">
@@ -118,8 +123,6 @@
                                <div class="checkout__order__products">Products <span>Qty</span></div>
                                <ul id="list">
                                </ul>
-                               <ul>
-
 
                                <div class="checkout__input__checkbox">
 
@@ -128,21 +131,17 @@
 
                                    ..........................................................................................</p>
                               <div class="checkout__order__products">Total<span id = "total"></span></div>
-
                               <p>.........................................................................................
 
                                   ..........................................................................................</p>
 
 	                     <center>
-                    <h4>Discount</h4>
-					<input type="text" placeholder="Discount Amount" id="discount_amount" class="txt txt-success btn-lg float-center"  />
 
 
 						 <br>
 
 
 
-						 <input type="button" onClick="discount();" class="site-btn" Value="Apply Discount" />
 						 </form>
 
 
@@ -173,14 +172,36 @@
            "rice5":10,
            "test":3,
            "sdf":6456,
-
        }
+
+       var billInfo = []
        function optionProuct(){
            let base =''
            for(let key in data){
             base+=`<option value='${data[key]}'>${key}</option>`
            }
            $("#selUser").append(base)
+       }
+
+       function showBill(){
+           let base = ''
+           let total = 0
+           billInfo.map(function(row){
+            base+=`<li>${row.product}<span>${row.quatity}</span></li>`
+            total+=row.total_price;
+           })
+
+           $("#list").html(base);
+           $("#total").html(total)
+       }
+
+       function add(){
+           billInfo.push({
+               "product": $('#selUser option:selected').text(),
+               "quatity": $('#quantity').val(),
+               "total_price": parseInt($("#price").val())
+           })
+           showBill()
        }
         $(document).ready(function(){
             optionProuct()
@@ -189,11 +210,17 @@
         
             // Read selected option
             $('#selUser').on("change",function(){
-                var product = $('#selUser option:selected').text();
-                var price = $('#selUser').val();
-                console.log(price)
+                let price = $('#selUser').val();
                 $("#product-rice").html(price)
             });
+
+            //quanitey
+            $("#quantity").on("input", function(){
+                let price = parseInt($('#selUser').val());
+                let quality = parseInt($('#quantity').val());
+
+                $("#price").val(price*quality)
+            })
         });
         
    </script>
