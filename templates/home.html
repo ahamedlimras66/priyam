@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ASK ME BEST</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="static/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="static/css/style.css" type="text/css">
+	<style>
+		table {
+		    width: 30px;
+
+	}
+	input {display: block;}
+	input.total {margin-top: 30px;}
+	.textInput2
+	{
+	width: 170px;
+	color: #000000;
+	margin-top: 0px;
+	margin-left: 5px;
+	height:100px;
+	padding-top:0px;
+	vertical-align:top;
+	}
+	.fakey {
+	    border: solid 1px;
+	    color: #ccc;
+	    font-family: sans-serif;
+	    font-size: .9em;
+	}
+
+	.fakey input {
+	    border: none;
+	    outline: none;
+	    font-family: sans-serif;
+	    font-size: .9em;
+	    width: 200px;
+	}
+	</style>
+
+</head>
+
+<body>
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+
+    <!-- Header Section End -->
+
+  
+
+   <!-- Checkout Section Begin -->
+   <section class="checkout spad">
+       <div class="container">
+           <div class="row">
+
+
+           <div class="checkout__form">
+                <center> <h4>Product Details</h4></center>
+
+               <form action="#">
+                   <div class="row">
+                       <div class="col-lg-8 col-md-6">
+                           <div class="row">
+                               <div class="col-lg-6">
+                                   <div class="checkout__input">
+
+
+	 									   <br>
+	 									    <br>
+	 										 <br>
+	 										  <br>
+	 										   <br>
+	 										    <br>
+	 											 <br>
+
+	 											  <br>
+                                        <h4>Product<span>*</span></h4>
+							        {{ form.productname() }}
+                                   </div>
+                               </div>
+                               <div class="col-lg-6">
+                                   <div class="checkout__input">
+									   <br>
+									    <br>
+										 <br>
+										  <br>
+										   <br>
+										    <br>
+											 <br>
+
+											  <br>
+                                      <h4>Rate<span>*</span></h4>
+                                        {{ form.price(readonly=true)}}
+									<!-- <input type="text" placeholder="rate" id="txt1" onkeyup="sum();"  /> -->
+
+
+
+
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="checkout__input">
+                               <h4>Quatity<span>*</span></h4>
+                               <!-- <input type="text" placeholder="quantity" id="txt2" onkeyup="sum();" /> -->
+                               {{ form.quatity }}
+
+							    <script>
+
+
+									// function sum() {
+                                    //     var txtFirstNumberValue = document.getElementById('txt1').value;
+                                    //     var txtSecondNumberValue = document.getElementById('txt2').value;
+                                    //     var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
+                                    //     if (!isNaN(result)) {
+									//     document.getElementById('txt3').value = result;
+                                    //     }
+                                    // }
+							   </script>
+
+
+                           </div>
+
+
+
+							<br>
+         <center>    <input type="button" class="site-btn" onClick="add()" value="Add"/></center>
+                       </div>
+                       <div class="col-lg-4 col-md-7">
+                           <div class="checkout__order">
+                              <center>  <h4>Your Order</h4> </center>
+
+                               <div class="checkout__order__products">Products <span>Qty</span></div>
+                               <ul id="list">
+                                   <!--<li>Vegetable’s Package <span>1</span></li> -->
+                                   <!-- <li>Fresh Vegetable <span>1</span></li> -->
+                                   <!-- <li>Organic Bananas <span>3</span></li> -->
+                               </ul>
+                               <ul>
+
+
+                               <div class="checkout__input__checkbox">
+
+                               </div>
+                               <p>.........................................................................................
+
+                                   ..........................................................................................</p>
+                              <div class="checkout__order__products">Total<span id = "total"></span></div>
+
+
+
+
+
+
+
+	 						  <div class="checkout__order__products">Discounted Total  =<span id = "final_amount"></span></div>
+                              <p>.........................................................................................
+
+                                  ..........................................................................................</p>
+
+	                     <center>
+                    <h4>Discount</h4>
+					<input type="text" placeholder="Discount Amount" id="discount_amount" class="txt txt-success btn-lg float-center"  />
+
+
+						 <br>
+
+
+
+						 <input type="button" onClick="discount();" class="site-btn" Value="Apply Discount" />
+						 </form>
+
+
+
+
+
+                               <button type="submit" class="site-btn" onClick="print_bill();">Print Bill</button>
+							   <br>
+								    <button type="submit" class="site-btn">Clear</button>
+                           </div>
+                       </div>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </section>
+   <!-- Checkout Section End -->
+   <script>
+        var bill_info = {};
+
+       let customer_select = document.getElementById('customername');
+       let bill_name = document.getElementById('bill_name');
+       let address = document.getElementById('address');
+       let phoneno = document.getElementById('phoneno');
+       let town_city = document.getElementById('town_city');
+       let invoiceno = document.getElementById('invoiceno');
+       let proudct_select = document.getElementById('productname');
+       let price_select = document.getElementById('price');
+       let quantity = document.getElementById('quatity');
+       let total = 0;
+
+
+       customer_select.onchange = function(){
+           state = customer_select.value;
+           fetch('/customer/'+state).then(function(resphone){
+               resphone.json().then(function(data){
+                   address.value = data['address']
+                   phoneno.value = data['phoneno']
+                   town_city.value = data['town_city']
+
+                    bill_name.value = customer_select.options[customer_select.value-1].text
+
+                   bill_info = {"product_id":[],
+                                "product_name":[],
+                                "product_price":[],
+                                "quatity":[]}
+                   bill_info.customer_id = state
+                   total = 0
+               })
+           })
+       }
+
+       proudct_select.onchange = function(){
+            state = proudct_select.value;
+            fetch('/product/'+state).then(function(response){
+                response.json().then(function(data){
+                    price_select.value = data['price']
+                })
+            })
+        }
+        function print_bill(){
+            bill_info.bill_name = bill_name.value
+            fetch('/getdata/'+JSON.stringify(bill_info))
+        }
+
+        function add(){
+            var x = "";
+            bill_info["product_id"].push(proudct_select.value)
+            bill_info["product_name"].push(proudct_select.options[proudct_select.value-1].text)
+            bill_info["product_price"].push(price_select.value)
+            bill_info["quatity"].push(quatity.value)
+
+            total += quatity.value*price_select.value
+            var i;
+            for(i=0; i<bill_info.quatity.length;i++){
+                x += "<li>"+bill_info.product_name[i]+"<span>"+bill_info.quatity[i]+"</span></li>"
+            }
+            document.getElementById("list").innerHTML = x
+            document.getElementById("total").innerHTML = total
+        }
+
+        function discount(){
+            total -= document.getElementById("discount_amount").value
+            document.getElementById("final_amount").innerHTML = total
+        }
+   </script>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.nice-select.min.js"></script>
+    <script src="static/js/jquery-ui.min.js"></script>
+    <script src="static/js/jquery.slicknav.js"></script>
+    <script src="static/js/mixitup.min.js"></script>
+    <script src="static/js/owl.carousel.min.js"></script>
+    <script src="static/js/main.js"></script>
+
+
+
+</body>
+
+</html>
