@@ -5,6 +5,12 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <!-- Select2 CSS --> 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <!-- Select2 JS --> 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
@@ -15,8 +21,6 @@
     <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/static/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/selectstyle.css" type="text/css">
-
 
 	<style>
 		table {
@@ -79,6 +83,10 @@
                                         <br>
                                         <br>
                                         <h4>Product<span>*</span></h4>
+                                        <!-- Dropdown -->       
+                                        <select id='selUser' style='width: 200px;'>
+                                        </select>   
+                                        <div id='result'></div>
                                    </div>
                                </div>
                                <div class="col-lg-6">
@@ -92,6 +100,7 @@
                                         <br>
                                         <br>
                                       <h4>Rate<span>*</span></h4>
+                                      <p id="product-rice"></p>
                                    </div>
                                </div>
                            </div>
@@ -150,53 +159,43 @@
            </div>
        </div>
    </section>
-   <!-- Checkout Section End -->
-   <script src="/static/js/jquery-3.3.1.min.js"></script>
+</body>
    <script src="/static/js/bootstrap.min.js"></script>
-   <script src="/static/js/jquery.nice-select.min.js"></script>
-   <script src="/static/js/jquery-ui.min.js"></script>
-   <script src="/static/js/jquery.slicknav.js"></script>
    <script src="/static/js/mixitup.min.js"></script>
    <script src="/static/js/owl.carousel.min.js"></script>
    <script src="/static/js/main.js"></script>
-   <script src="/static/js/selectstyle.js"></script>
    <script>
-        $('select').selectstyle();
-        var bill_info = {};
+       let data = {
+           "rice1":10,
+           "rice2":10,
+           "rice3":10,
+           "rice4":10,
+           "rice5":10,
+           "test":3,
+           "sdf":6456,
 
-       let proudct_select = document.getElementById('product-opt');
-       let total = 0;
-
-       proudct_select.onchange = function(){
-           console.log(this)
-
-        }
-        function print_bill(){
-            bill_info.bill_name = bill_name.value
-            fetch('/getdata/'+JSON.stringify(bill_info))
-        }
-
-        function add(){
-            var x = "";
-            bill_info["product_id"].push(proudct_select.value)
-            bill_info["product_name"].push(proudct_select.options[proudct_select.value-1].text)
-            bill_info["product_price"].push(price_select.value)
-            bill_info["quatity"].push(quatity.value)
-
-            total += quatity.value*price_select.value
-            var i;
-            for(i=0; i<bill_info.quatity.length;i++){
-                x += "<li>"+bill_info.product_name[i]+"<span>"+bill_info.quatity[i]+"</span></li>"
-            }
-            document.getElementById("list").innerHTML = x
-            document.getElementById("total").innerHTML = total
-        }
-
-        function discount(){
-            total -= document.getElementById("discount_amount").value
-            document.getElementById("final_amount").innerHTML = total
-        }
+       }
+       function optionProuct(){
+           let base =''
+           for(let key in data){
+            base+=`<option value='${data[key]}'>${key}</option>`
+           }
+           $("#selUser").append(base)
+       }
+        $(document).ready(function(){
+            optionProuct()
+            // Initialize select2
+            $("#selUser").select2();
+        
+            // Read selected option
+            $('#selUser').on("change",function(){
+                var product = $('#selUser option:selected').text();
+                var price = $('#selUser').val();
+                console.log(price)
+                $("#product-rice").html(price)
+            });
+        });
+        
    </script>
-</body>
 
 </html>
